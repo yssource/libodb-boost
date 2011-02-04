@@ -28,9 +28,14 @@ LT_OUTPUT
 #
 THREADS
 
+# Check for boost.
+#
+LIBBOOST([],[AC_MSG_ERROR([boost is not found; consider using CPPFLAGS/LDFLAGS or --with-boost=DIR to specify its location])])
+LIBBOOST_SYSTEM
+
 # Check for libodb.
 #
-LIBODB([],[AC_MSG_ERROR([libodb is not found; consider using --with-libodb=DIR])])
+LIBODB([], [AC_MSG_ERROR([libodb is not found; consider using --with-libodb=DIR])])
 
 # Define LIBODB_BOOST_STATIC_LIB if we are build static library on certain
 # platforms.

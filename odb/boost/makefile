@@ -5,7 +5,7 @@
 
 include $(dir $(lastword $(MAKEFILE_LIST)))../../build/bootstrap.make
 
-cxx := exceptions.cxx
+cxx := date-time/exceptions.cxx
 
 cxx_tun := $(cxx)
 cxx_obj := $(addprefix $(out_base)/,$(cxx_tun:.cxx=.o))
@@ -54,13 +54,15 @@ $(out_base)/: $(odb_boost.l)
 $(dist): export sources := $(cxx)
 $(dist): export headers = $(subst $(src_base)/,,$(shell find $(src_base) \
 -name '*.hxx' -o -name '*.ixx' -o -name '*.txx'))
+$(dist): export options = $(subst $(src_base)/,,$(shell find $(src_base) \
+-name '*.options'))
 $(dist): export extra_dist := libodb-boost-vc9.vcproj \
 libodb-boost-vc10.vcxproj libodb-boost-vc10.vcxproj.filters
 $(dist): export interface_version = $(shell sed -e \
 's/^\([0-9]*\.[0-9]*\).*/\1/' $(src_root)/version)
 
 $(dist):
-	$(call dist-data,$(sources) $(headers) details/config.h.in)
+	$(call dist-data,$(sources) $(headers) $(options) details/config.h.in)
 	$(call meta-vc9proj,libodb-boost-vc9.vcproj)
 	$(call meta-vc10proj,libodb-boost-vc10.vcxproj)
 	$(call meta-automake)

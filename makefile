@@ -15,13 +15,14 @@ $(default): $(addprefix $(out_base)/,$(addsuffix /,$(dirs)))
 
 $(dist): export dirs := $(dirs)
 $(dist): export docs := GPLv2 LICENSE README NEWS version
+$(dist): export options := odb/boost.options
 $(dist): data_dist := INSTALL libodb-boost-vc9.sln libodb-boost-vc10.sln
 $(dist): exec_dist := bootstrap
 $(dist): export extra_dist := $(data_dist) $(exec_dist)
 $(dist): export version = $(shell cat $(src_root)/version)
 
 $(dist): $(addprefix $(out_base)/,$(addsuffix /.dist,$(dirs)))
-	$(call dist-data,$(docs) $(data_dist) libodb-boost.pc.in)
+	$(call dist-data,$(docs) $(options) $(data_dist) libodb-boost.pc.in)
 	$(call dist-exec,$(exec_dist))
 	$(call dist-dir,m4)
 	$(call meta-automake)

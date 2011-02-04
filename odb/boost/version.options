@@ -1,0 +1,13 @@
+# file      : odb/boost/version.options
+# author    : Boris Kolpackov <boris@codesynthesis.com>
+# copyright : Copyright (c) 2009-2011 Code Synthesis Tools CC
+# license   : GNU GPL v2; see accompanying LICENSE file
+
+# Make sure the options files as seen by the ODB compiler and header
+# files as seen by the C++ compiler are from the same profile version.
+#
+--hxx-prologue '#include <odb/boost/version.hxx>'
+
+#--hxx-prologue '#if LIBODB_BOOST_VERSION != 1010000 // 1.1.0'
+#--hxx-prologue '#  error ODB and C++ compilers see different libodb-boost versions'
+#--hxx-prologue '#endif'
