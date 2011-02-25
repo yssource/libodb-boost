@@ -10,9 +10,7 @@
 #include <boost/date_time/gregorian/gregorian_types.hpp>
 
 // By default map boost::gregorian::date to MySQL DATE. We use the
-// NULL value to represent not_a_date_time. In MYSQL "zero" date
-// plays the special value role but this value is not treated as
-// special by gregorian::date.
+// NULL value to represent not_a_date_time.
 //
 #pragma db value(boost::gregorian::date) type("DATE")
 
