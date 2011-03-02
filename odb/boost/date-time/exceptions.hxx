@@ -17,13 +17,13 @@ namespace odb
   {
     namespace date_time
     {
-      struct LIBODB_BOOST_EXPORT special_value: odb::boost::exception
+      struct LIBODB_BOOST_EXPORT special_value: exception
       {
         virtual const char*
         what () const throw ();
       };
 
-      struct LIBODB_BOOST_EXPORT value_out_of_range : odb::boost::exception
+      struct LIBODB_BOOST_EXPORT value_out_of_range: exception
       {
         virtual const char*
         what () const throw ();
