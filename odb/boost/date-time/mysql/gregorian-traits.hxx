@@ -20,7 +20,7 @@ namespace odb
   namespace mysql
   {
     template <>
-    class value_traits< ::boost::gregorian::date, MYSQL_TIME, id_date>
+    class default_value_traits< ::boost::gregorian::date, MYSQL_TIME, id_date>
     {
     public:
       typedef ::boost::gregorian::date date;
