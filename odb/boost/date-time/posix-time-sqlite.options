@@ -1,0 +1,9 @@
+# file	    : odb/boost/date-time/posix-time-sqlite.options
+# author    : Constantin Michael <constantin@codesynthesis.com>
+# copyright : Copyright (c) 2009-2011 Code Synthesis Tools CC
+# license   : GNU GPL v2; see accompanying LICENSE file
+
+--profile boost/version
+
+--odb-epilogue '#include <odb/boost/date-time/sqlite/posix-time-mapping.hxx>'
+--hxx-prologue '#include <odb/boost/date-time/sqlite/posix-time-traits.hxx>'

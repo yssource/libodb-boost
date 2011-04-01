@@ -1,0 +1,9 @@
+# file      : odb/boost/date-time/gregorian-sqlite.options
+# author    : Boris Kolpackov <boris@codesynthesis.com>
+# copyright : Copyright (c) 2009-2011 Code Synthesis Tools CC
+# license   : GNU GPL v2; see accompanying LICENSE file
+
+--profile boost/version
+
+--odb-epilogue '#include <odb/boost/date-time/sqlite/gregorian-mapping.hxx>'
+--hxx-prologue '#include <odb/boost/date-time/sqlite/gregorian-traits.hxx>'
