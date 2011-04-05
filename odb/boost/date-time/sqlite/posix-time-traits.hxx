@@ -208,7 +208,7 @@ namespace odb
         if (is_null)
           v = time_duration (::boost::date_time::not_a_date_time);
         else
-          v = time_duration (0, 0, static_cast<long> (i));
+          v = time_duration (0, 0, static_cast<time_duration::sec_type> (i));
       }
 
       static void
