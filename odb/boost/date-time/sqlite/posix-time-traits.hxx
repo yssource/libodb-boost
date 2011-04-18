@@ -29,8 +29,7 @@ namespace odb
   namespace sqlite
   {
     template <>
-    class default_value_traits<
-      ::boost::posix_time::ptime, details::buffer, id_text>
+    class default_value_traits< ::boost::posix_time::ptime, id_text>
     {
     public:
       typedef ::boost::posix_time::ptime ptime;
@@ -96,8 +95,7 @@ namespace odb
     // SQLite INTEGER. The integer value represents UNIX time.
     //
     template <>
-    class default_value_traits<
-      ::boost::posix_time::ptime, long long, id_integer>
+    class default_value_traits< ::boost::posix_time::ptime, id_integer>
     {
     public:
       typedef ::boost::gregorian::date date;
@@ -138,8 +136,7 @@ namespace odb
     };
 
     template <>
-    class default_value_traits<
-      ::boost::posix_time::time_duration, details::buffer, id_text>
+    class default_value_traits< ::boost::posix_time::time_duration, id_text>
     {
     public:
       typedef ::boost::posix_time::time_duration time_duration;
@@ -193,8 +190,7 @@ namespace odb
     };
 
     template <>
-    class default_value_traits<
-      ::boost::posix_time::time_duration, long long, id_integer>
+    class default_value_traits< ::boost::posix_time::time_duration, id_integer>
     {
     public:
       typedef ::boost::posix_time::time_duration time_duration;

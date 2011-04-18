@@ -21,8 +21,7 @@ namespace odb
   namespace mysql
   {
     template <>
-    class default_value_traits<
-      ::boost::posix_time::ptime, MYSQL_TIME, id_datetime>
+    class default_value_traits< ::boost::posix_time::ptime, id_datetime>
     {
     public:
       typedef ::boost::posix_time::ptime ptime;
@@ -70,8 +69,7 @@ namespace odb
     };
 
     template <>
-    class default_value_traits<
-      ::boost::posix_time::ptime, MYSQL_TIME, id_timestamp>
+    class default_value_traits< ::boost::posix_time::ptime, id_timestamp>
     {
     public:
       typedef ::boost::posix_time::ptime ptime;
@@ -124,8 +122,7 @@ namespace odb
     };
 
     template <>
-    class default_value_traits<
-      ::boost::posix_time::time_duration, MYSQL_TIME, id_time>
+    class default_value_traits< ::boost::posix_time::time_duration, id_time>
     {
     public:
       typedef ::boost::posix_time::time_duration time_duration;

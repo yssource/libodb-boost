@@ -30,8 +30,7 @@ namespace odb
   namespace sqlite
   {
     template <>
-    class default_value_traits<
-      ::boost::gregorian::date, details::buffer, id_text>
+    class default_value_traits< ::boost::gregorian::date, id_text>
     {
     public:
       typedef ::boost::gregorian::date date;
@@ -83,8 +82,7 @@ namespace odb
     };
 
     template <>
-    class default_value_traits<
-      ::boost::gregorian::date, long long, id_integer>
+    class default_value_traits< ::boost::gregorian::date, id_integer>
     {
     public:
       typedef ::boost::gregorian::date date;
