@@ -21,8 +21,8 @@ namespace odb
   class pointer_traits< ::boost::shared_ptr<T> >
   {
   public:
-    static pointer_kind const kind = pk_shared;
-    static bool const lazy = false;
+    static const pointer_kind kind = pk_shared;
+    static const bool lazy = false;
 
     typedef T element_type;
     typedef ::boost::shared_ptr<element_type> pointer_type;
@@ -67,8 +67,8 @@ namespace odb
   class pointer_traits< ::boost::weak_ptr<T> >
   {
   public:
-    static pointer_kind const kind = pk_weak;
-    static bool const lazy = false;
+    static const pointer_kind kind = pk_weak;
+    static const bool lazy = false;
 
     typedef T element_type;
     typedef ::boost::weak_ptr<element_type> pointer_type;
