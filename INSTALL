@@ -2,7 +2,7 @@ Prerequisites
 =============
 
   - libodb           http://www.codesynthesis.com/products/odb/
-  - boost            http://www.boost.org
+  - Boost            http://www.boost.org
 
 
 Building on UNIX
@@ -11,7 +11,7 @@ Building on UNIX
 The following build instructions are for the Linux/UNIX/Mac OS X
 operating systems as well as for Cygwin and MinGW on Windows.
 
-The standard autotools-based build system is used on these platforms. 
+The standard autotools-based build system is used on these platforms.
 After unpacking the source code archive, change to the libodb-boost
 package directory (referred to as libodb-boost/ from now on) and run
 the configure script:
@@ -22,7 +22,7 @@ To see the available configuration options run configure with --help:
 
 ./configure --help
 
-The configure script expects the libodb and boost headers and libraries
+The configure script expects the libodb and Boost headers and libraries
 to be installed in a directory where the C++ compiler and linker will
 search for them by default (normally /usr and /usr/local). If these
 libraries are installed in other directories, you can use the CPPFLAGS
@@ -31,13 +31,13 @@ and LDFLAGS configure variables to specify their locations, for example:
 ./configure CPPFLAGS=-I/opt/libodb/include LDFLAGS=-L/opt/libodb/lib
 
 If these libraries are not installed and you would like to use their
-build directories instead, you can use the --with-libodb, and 
+build directories instead, you can use the --with-libodb, and
 --with-boost configure options to specify their locations, for example:
 
 ./configure --with-boost=/tmp/boost
 
-For the boost build directory the configure script expects to find the
-boost libraries in the stage/lib/ subdirectory.
+For the Boost build directory the configure script expects to find the
+Boost libraries in the stage/lib/ subdirectory.
 
 As another example, the following configure command only builds shared
 libraries, uses the specified C++ compiler, and compiles with optimization
@@ -64,11 +64,11 @@ Studio. If you would like to build libodb-boost with GCC either using
 Cygwin or MinGW, refer to the "Building on UNIX" section above.
 
 The standard Visual Studio project and solution files are used on this
-platform. The provided project files expect the libodb and boost header
+platform. The provided project files expect the libodb and Boost header
 and import library directories to be in the VC++ Directories Include and
 Library search lists. For libodb, see the INSTALL file in the package
 directory for more information on how to setup the VC++ Directories. For
-boost, refer to the boost documentation.
+Boost, refer to the Boost documentation.
 
 To build libodb-boost, unpack the source code archive and open the
 libodb-boost-vc<N>.sln file located in the libodb-boost package
@@ -77,7 +77,7 @@ version of Visual Studio that you are using. Once the solution is open,
 select the desired build configuration (Debug or Release) and platform
 (Win32 or x64) and build the solution.
 
-The resulting 32-bit DLLs and import libraries are placed into the 
+The resulting 32-bit DLLs and import libraries are placed into the
 libodb-boost\bin\ and libodb-boost\lib\ directories, respectively.
 Similarly, the 64-bit DLLs and import libraries are placed into
 libodb-boost\bin64\ and libodb-boost\lib64\. The Release versions of
@@ -92,10 +92,10 @@ Win32:
 
   Include:    ...\libodb-boost
   Library:    ...\libodb-boost\lib
-  Executable: ...\libodb-boost\bin    
+  Executable: ...\libodb-boost\bin
 
 x64:
 
   Include:    ...\libodb-boost
   Library:    ...\libodb-boost\lib64
-  Executable: ...\libodb-boost\bin64    
+  Executable: ...\libodb-boost\bin64
