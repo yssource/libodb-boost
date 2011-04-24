@@ -56,6 +56,12 @@ namespace odb
         }
       }
     };
+
+    template <>
+    class default_type_traits< ::boost::gregorian::date>
+    {
+      static const database_type_id db_type_id = id_date;
+    };
   }
 }
 

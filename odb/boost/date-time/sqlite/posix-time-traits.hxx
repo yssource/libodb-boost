@@ -224,6 +224,18 @@ namespace odb
         }
       }
     };
+
+    template <>
+    class default_type_traits< ::boost::posix_time::ptime>
+    {
+      static const database_type_id db_type_id = id_text;
+    };
+
+    template <>
+    class default_type_traits< ::boost::posix_time::time_duration>
+    {
+      static const database_type_id db_type_id = id_text;
+    };
   }
 }
 
