@@ -29,15 +29,15 @@
 
 // Check that we have compatible ODB version.
 //
-#if ODB_VERSION != 10300
+#if ODB_VERSION != 10400
 #  error incompatible odb interface version detected
 #endif
 
 // libodb-boost version: odb interface version plus the bugfix
 // version.
 //
-#define LIBODB_BOOST_VERSION     1030000
-#define LIBODB_BOOST_VERSION_STR "1.3.0"
+#define LIBODB_BOOST_VERSION     1040000
+#define LIBODB_BOOST_VERSION_STR "1.4.0"
 
 #include <odb/post.hxx>
 
