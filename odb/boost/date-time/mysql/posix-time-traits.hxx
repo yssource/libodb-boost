@@ -21,9 +21,8 @@ namespace odb
   namespace mysql
   {
     template <>
-    class default_value_traits< ::boost::posix_time::ptime, id_datetime>
+    struct default_value_traits< ::boost::posix_time::ptime, id_datetime>
     {
-    public:
       typedef ::boost::posix_time::ptime ptime;
       typedef ::boost::posix_time::time_duration time_duration;
       typedef ::boost::gregorian::date date;
@@ -69,9 +68,8 @@ namespace odb
     };
 
     template <>
-    class default_value_traits< ::boost::posix_time::ptime, id_timestamp>
+    struct default_value_traits< ::boost::posix_time::ptime, id_timestamp>
     {
-    public:
       typedef ::boost::posix_time::ptime ptime;
       typedef ::boost::posix_time::time_duration time_duration;
       typedef ::boost::gregorian::date date;
@@ -122,9 +120,8 @@ namespace odb
     };
 
     template <>
-    class default_value_traits< ::boost::posix_time::time_duration, id_time>
+    struct default_value_traits< ::boost::posix_time::time_duration, id_time>
     {
-    public:
       typedef ::boost::posix_time::time_duration time_duration;
       typedef time_duration value_type;
       typedef time_duration query_type;
@@ -171,13 +168,13 @@ namespace odb
     };
 
     template <>
-    class default_type_traits< ::boost::posix_time::ptime>
+    struct default_type_traits< ::boost::posix_time::ptime>
     {
       static const database_type_id db_type_id = id_datetime;
     };
 
     template <>
-    class default_type_traits< ::boost::posix_time::time_duration>
+    struct default_type_traits< ::boost::posix_time::time_duration>
     {
       static const database_type_id db_type_id = id_time;
     };

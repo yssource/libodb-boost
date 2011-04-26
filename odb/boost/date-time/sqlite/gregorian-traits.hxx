@@ -30,9 +30,8 @@ namespace odb
   namespace sqlite
   {
     template <>
-    class default_value_traits< ::boost::gregorian::date, id_text>
+    struct default_value_traits< ::boost::gregorian::date, id_text>
     {
-    public:
       typedef ::boost::gregorian::date date;
       typedef date value_type;
       typedef date query_type;
@@ -82,9 +81,8 @@ namespace odb
     };
 
     template <>
-    class default_value_traits< ::boost::gregorian::date, id_integer>
+    struct default_value_traits< ::boost::gregorian::date, id_integer>
     {
-    public:
       typedef ::boost::gregorian::date date;
       typedef ::boost::posix_time::time_duration time_duration;
       typedef ::boost::posix_time::ptime ptime;
@@ -125,7 +123,7 @@ namespace odb
     };
 
     template <>
-    class default_type_traits< ::boost::gregorian::date>
+    struct default_type_traits< ::boost::gregorian::date>
     {
       static const database_type_id db_type_id = id_text;
     };
