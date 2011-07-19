@@ -11,11 +11,11 @@
 // By default map boost::posix_time::ptime to MySQL DATETIME. We use
 // the NULL value to represent not_a_date_time.
 //
-#pragma db value(boost::posix_time::ptime) type("DATETIME")
+#pragma db value(boost::posix_time::ptime) type("DATETIME") null
 
 // By default map boost::posix_time::time_duration to MySQL TIME. We
 // use the NULL value to represent not_a_date_time.
 //
-#pragma db value(boost::posix_time::time_duration) type("TIME")
+#pragma db value(boost::posix_time::time_duration) type("TIME") null
 
 #endif // ODB_BOOST_DATE_TIME_MYSQL_POSIX_TIME_MAPPING_HXX

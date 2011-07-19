@@ -11,11 +11,11 @@
 // By default map boost::posix_time::ptime to TEXT. We use
 // the NULL value to represent not_a_date_time.
 //
-#pragma db value(boost::posix_time::ptime) type("TEXT")
+#pragma db value(boost::posix_time::ptime) type("TEXT") null
 
 // By default map boost::posix_time::time_duration to TEXT. We
 // use the NULL value to represent not_a_date_time.
 //
-#pragma db value(boost::posix_time::time_duration) type("TEXT")
+#pragma db value(boost::posix_time::time_duration) type("TEXT") null
 
 #endif // ODB_BOOST_DATE_TIME_SQLITE_POSIX_TIME_MAPPING_HXX

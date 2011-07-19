@@ -11,6 +11,6 @@
 // By default map boost::gregorian::date to TEXT. We use the
 // NULL value to represent not_a_date_time.
 //
-#pragma db value(boost::gregorian::date) type("TEXT")
+#pragma db value(boost::gregorian::date) type("TEXT") null
 
 #endif // ODB_BOOST_DATE_TIME_SQLITE_GREGORIAN_MAPPING_HXX
