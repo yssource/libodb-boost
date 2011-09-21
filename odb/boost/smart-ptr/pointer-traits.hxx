@@ -12,6 +12,7 @@
 #include <boost/weak_ptr.hpp>
 
 #include <odb/pointer-traits.hxx>
+#include <odb/details/meta/remove-const.hxx>
 
 namespace odb
 {
@@ -27,6 +28,10 @@ namespace odb
     typedef T element_type;
     typedef ::boost::shared_ptr<element_type> pointer_type;
     typedef ::boost::shared_ptr<const element_type> const_pointer_type;
+    typedef typename details::meta::remove_const<element_type>::result
+    unrestricted_element_type;
+    typedef ::boost::shared_ptr<unrestricted_element_type>
+    unrestricted_pointer_type;
     typedef smart_ptr_guard<pointer_type> guard;
 
     static element_type*
@@ -45,6 +50,12 @@ namespace odb
     null_ptr (const pointer_type& p)
     {
       return !p;
+    }
+
+    static unrestricted_pointer_type
+    cast (const pointer_type& p)
+    {
+      return ::boost::const_pointer_cast<unrestricted_element_type> (p);
     }
 
   public:
