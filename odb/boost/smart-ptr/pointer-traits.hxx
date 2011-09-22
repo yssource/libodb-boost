@@ -28,7 +28,7 @@ namespace odb
     typedef T element_type;
     typedef ::boost::shared_ptr<element_type> pointer_type;
     typedef ::boost::shared_ptr<const element_type> const_pointer_type;
-    typedef typename details::meta::remove_const<element_type>::result
+    typedef typename odb::details::meta::remove_const<element_type>::result
     unrestricted_element_type;
     typedef ::boost::shared_ptr<unrestricted_element_type>
     unrestricted_pointer_type;
