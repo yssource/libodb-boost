@@ -22,6 +22,12 @@ namespace odb
     typedef T wrapped_type;
     typedef ::boost::optional<T> wrapper_type;
 
+    // T can be const.
+    //
+    typedef
+    typename details::meta::remove_const<T>::result
+    unrestricted_wrapped_type;
+
     static const bool null_handler = true;
     static const bool null_default = true;
 
@@ -43,13 +49,13 @@ namespace odb
       return *o;
     }
 
-    static wrapped_type&
+    static unrestricted_wrapped_type&
     set_ref (wrapper_type& o)
     {
       if (!o)
-        o = T ();
+        o = unrestricted_wrapped_type ();
 
-      return *o;
+      return const_cast<unrestricted_wrapped_type&> (*o);
     }
   };
 }
