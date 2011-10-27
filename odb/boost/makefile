@@ -32,7 +32,7 @@ $(odb_boost.l.cpp-options): $(odb.l.cpp-options)
 
 $(cxx_obj) $(cxx_od): $(odb_boost.l.cpp-options) $(out_base)/details/config.h
 
-$(out_base)/details/config.h:
+$(out_base)/details/config.h: | $(out_base)/details/.
 	@echo '/* file      : odb/boost/details/config.h'               >$@
 	@echo ' * author    : automatically generated'                  >>$@
 	@echo ' */'                                                     >>$@
