@@ -4,10 +4,11 @@
 # license   : GNU GPL v2; see accompanying LICENSE file
 
 # Make sure the options files as seen by the ODB compiler and header
-# files as seen by the C++ compiler are from the same profile version.
+# files as seen by the C++ compiler have the same Boost interface
+# version.
 #
 --hxx-prologue '#include <odb/boost/version.hxx>'
 
-#--hxx-prologue '#if LIBODB_BOOST_VERSION != 1060000 // 1.6.0'
-#--hxx-prologue '#  error ODB and C++ compilers see different libodb-boost versions'
-#--hxx-prologue '#endif'
+--hxx-prologue '#if ODB_BOOST_VERSION != 1060000 // 1.6.0'
+--hxx-prologue '#  error ODB and C++ compilers see different libodb-boost interface versions'
+--hxx-prologue '#endif'
