@@ -5,5 +5,9 @@
 
 --profile boost/version
 
---odb-epilogue '#include <odb/boost/date-time/sqlite/gregorian-mapping.hxx>'
+# Include the default mapping in prologue instead of epilogue to
+# allow the user to override the default mapping.
+#
+--odb-prologue '#include <odb/boost/date-time/sqlite/gregorian-mapping.hxx>'
+
 --hxx-prologue '#include <odb/boost/date-time/sqlite/gregorian-traits.hxx>'
