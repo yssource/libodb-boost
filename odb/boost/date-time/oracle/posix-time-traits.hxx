@@ -41,8 +41,8 @@ namespace odb
           v = ptime (::boost::date_time::not_a_date_time);
         else
         {
-          sb2 y (0);
-          ub1 m (0), d (0), h (0), min (0), s (0);
+          sb2 y;
+          ub1 m, d, h, min, s;
           ub4 ns;
 
           i.get (y, m, d, h, min, s, ns);
@@ -113,7 +113,7 @@ namespace odb
           v = time_duration (::boost::date_time::not_a_date_time);
         else
         {
-          sb4 d (0), h (0), m (0), s (0), ns (0);
+          sb4 d, h, m, s, ns;
           i.get (d, h, m, s, ns);
 
           unsigned long long fract_s (ns);

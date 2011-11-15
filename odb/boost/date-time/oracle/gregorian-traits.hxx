@@ -36,8 +36,8 @@ namespace odb
           v = date (::boost::date_time::not_a_date_time);
         else
         {
-          short y (0);
-          unsigned char m (0), d (0), h (0), min (0), s (0);
+          short y;
+          unsigned char m, d, h, min, s;
 
           details::get_date (b, y, m, d, h, min, s);
 
