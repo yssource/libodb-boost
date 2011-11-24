@@ -37,9 +37,9 @@ namespace odb
         else
         {
           short y;
-          unsigned char m, d, h, min, s;
+          unsigned char m, d, h, minute, s;
 
-          details::get_date (b, y, m, d, h, min, s);
+          details::get_date (b, y, m, d, h, minute, s);
 
           v = date (static_cast<date::year_type> (y),
                     static_cast<date::month_type> (m),

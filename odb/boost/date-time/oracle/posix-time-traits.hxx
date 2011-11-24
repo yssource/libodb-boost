@@ -42,10 +42,10 @@ namespace odb
         else
         {
           sb2 y;
-          ub1 m, d, h, min, s;
+          ub1 m, d, h, minute, s;
           ub4 ns;
 
-          i.get (y, m, d, h, min, s, ns);
+          i.get (y, m, d, h, minute, s, ns);
 
           unsigned long long fract_s (ns);
           fract_s = fract_s * time_duration::ticks_per_second () /
@@ -57,7 +57,7 @@ namespace odb
                   static_cast<date::day_type> (d)),
             time_duration (
               static_cast<time_duration::hour_type> (h),
-              static_cast<time_duration::min_type> (min),
+              static_cast<time_duration::min_type> (minute),
               static_cast<time_duration::sec_type> (s),
               static_cast<time_duration::fractional_seconds_type> (fract_s)));
         }
