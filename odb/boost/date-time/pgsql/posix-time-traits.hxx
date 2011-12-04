@@ -8,10 +8,7 @@
 
 #include <odb/pre.hxx>
 
-#include <ctime>
-
 #include <boost/date_time/posix_time/posix_time_types.hpp>
-#include <boost/date_time/posix_time/conversion.hpp>       // from_time_t
 
 #include <odb/core.hxx>
 #include <odb/pgsql/traits.hxx>
@@ -38,11 +35,6 @@ namespace odb
       typedef ptime query_type;
       typedef long long image_type;
 
-      // The difference between the Unix epoch and the PostgreSQL epoch
-      // in seconds.
-      //
-      static const long long epoch_diff = 946684800LL;
-
       static const long long neg_inf = -0x7fffffffffffffffLL - 1;
       static const long long pos_inf = 0x7fffffffffffffffLL;
 
@@ -60,8 +52,27 @@ namespace odb
           else if (i == pos_inf)
             v = ptime (::boost::date_time::pos_infin);
           else
-            v = ::boost::posix_time::from_time_t (
-              static_cast<std::time_t> (i / 1000000 + epoch_diff));
+          {
+            const ptime pg_epoch (date (2000, 1, 1),
+                                  time_duration (0, 0, 0));
+
+            // We need to split the microsecond image into hours and
+            // microseconds to avoid overflow during the fractional seconds
+            // calculation.
+            //
+            time_duration::hour_type h (
+              static_cast<time_duration::hour_type> (i / 3600000000LL));
+
+            i -= static_cast<long long> (h) * 3600000000LL;
+
+            v = pg_epoch +
+              time_duration (
+                h,
+                0,
+                0,
+                static_cast<time_duration::fractional_seconds_type> (
+                  i * time_duration::ticks_per_second () / 1000000LL));
+          }
         }
       }
 
@@ -83,20 +94,15 @@ namespace odb
         }
         else
         {
-          const ptime unix_epoch (date (1970, 1, 1), time_duration (0, 0, 0));
-
-          long long pg_seconds (
-            static_cast<long long> (
-              (v - unix_epoch).ticks () / time_duration::ticks_per_second ()) -
-            epoch_diff);
-
-          i = endian_traits::hton (pg_seconds * 1000000);
+          const ptime pg_epoch (date (2000, 1, 1), time_duration (0, 0, 0));
+          i = endian_traits::hton (
+            static_cast<long long> ((v - pg_epoch).total_microseconds ()));
         }
       }
     };
 
     // Implementation of the mapping between boost::posix_time::time_duration
-    // and PostgreSQL TIME. The TIME values are stores as micro-seconds since
+    // and PostgreSQL TIME. The TIME values are stored as micro-seconds since
     // 00:00:00.
     //
     template <>
@@ -116,9 +122,13 @@ namespace odb
         if (is_null)
           v = time_duration (::boost::date_time::not_a_date_time);
         else
-          v = time_duration (0, 0,
-                             static_cast<long> (
-                               endian_traits::ntoh (i) / 1000000));
+          v = time_duration (
+            0,
+            0,
+            0,
+            static_cast<time_duration::fractional_seconds_type> (
+              endian_traits::ntoh (i) * time_duration::ticks_per_second () /
+              1000000LL));
       }
 
       static void
@@ -137,7 +147,7 @@ namespace odb
         {
           is_null = false;
           i = endian_traits::hton (
-            static_cast<long long> (v.total_seconds ()) * 1000000);
+            static_cast<long long> (v.total_microseconds ()));
         }
       }
     };
