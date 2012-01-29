@@ -1,5 +1,4 @@
 # file      : odb/boost/makefile
-# author    : Boris Kolpackov <boris@codesynthesis.com>
 # copyright : Copyright (c) 2009-2011 Code Synthesis Tools CC
 # license   : GNU GPL v2; see accompanying LICENSE file
 
@@ -34,7 +33,7 @@ $(cxx_obj) $(cxx_od): $(odb_boost.l.cpp-options) $(out_base)/details/config.h
 
 $(out_base)/details/config.h: | $(out_base)/details/.
 	@echo '/* file      : odb/boost/details/config.h'               >$@
-	@echo ' * author    : automatically generated'                  >>$@
+	@echo ' * note      : automatically generated'                  >>$@
 	@echo ' */'                                                     >>$@
 	@echo ''                                                        >>$@
 	@echo '#ifndef ODB_BOOST_DETAILS_CONFIG_H'                      >>$@
