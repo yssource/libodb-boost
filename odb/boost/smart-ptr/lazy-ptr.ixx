@@ -336,7 +336,7 @@ namespace odb
     template <class T>
     template <class Y>
     inline void lazy_shared_ptr<T>::
-    reset (database_type& db, const std::auto_ptr<Y>& r)
+    reset (database_type& db, std::auto_ptr<Y>& r)
     {
       p_ = r;
 

@@ -109,7 +109,7 @@ namespace odb
       template <class Y> void reset (database_type&, Y*);
       template <class Y, class D> void reset (database_type&, Y*, D);
       template <class Y, class D, class A> void reset (database_type&, Y*, D, A);
-      template <class Y> void reset (database_type&, const std::auto_ptr<Y>&);
+      template <class Y> void reset (database_type&, std::auto_ptr<Y>&);
       template <class Y> void reset (database_type&, const ::boost::shared_ptr<Y>&);
 
       template <class O /* = T */>
