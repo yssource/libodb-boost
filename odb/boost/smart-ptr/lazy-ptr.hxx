@@ -113,7 +113,7 @@ namespace odb
       template <class Y> void reset (database_type&, std::auto_ptr<Y>&);
       template <class Y> void reset (database_type&, const ::boost::shared_ptr<Y>&);
 
-#ifdef ODB_CXX11
+#ifdef ODB_CXX11_FUNCTION_TEMPLATE_DEFAULT_ARGUMENT
       template <class O = T>
 #else
       template <class O /* = T */>
@@ -220,7 +220,7 @@ namespace odb
       // The object_id() function can only be called when the object is
       // persistent, or: expired() XOR loaded() (can use != for XOR).
       //
-#ifdef ODB_CXX11
+#ifdef ODB_CXX11_FUNCTION_TEMPLATE_DEFAULT_ARGUMENT
       template <class O = T>
 #else
       template <class O /* = T */>
