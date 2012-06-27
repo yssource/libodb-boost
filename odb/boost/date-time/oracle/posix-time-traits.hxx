@@ -13,8 +13,8 @@
 
 #include <odb/oracle/traits.hxx>
 #include <odb/oracle/oracle-fwd.hxx>   // ub1, sb2, ub4
-#include <odb/oracle/oracle-types.hxx> // odb::oracle::datetime,
-                                       // odb::oracle::interval_ds
+#include <odb/oracle/oracle-types.hxx> // odb::oracle::{datetime interval_ds}
+#include <odb/oracle/details/date.hxx>
 
 #include <odb/boost/date-time/exceptions.hxx>
 
@@ -89,6 +89,69 @@ namespace odb
                  static_cast<ub1> (t.minutes ()),
                  static_cast<ub1> (t.seconds ()),
                  static_cast<ub4> (ns));
+        }
+      }
+    };
+
+    template <>
+    struct default_value_traits< ::boost::posix_time::ptime, id_date>
+    {
+      typedef ::boost::posix_time::ptime ptime;
+      typedef ::boost::posix_time::time_duration time_duration;
+      typedef ::boost::gregorian::date date;
+
+      typedef ptime value_type;
+      typedef ptime query_type;
+      typedef char* image_type;
+
+      static void
+      set_value (ptime& v, const char* b, bool is_null)
+      {
+        if (is_null)
+          v = ptime (::boost::date_time::not_a_date_time);
+        else
+        {
+          short y;
+          unsigned char m, d, h, minute, s;
+
+          details::get_date (b, y, m, d, h, minute, s);
+
+          v = ptime (
+            date (static_cast<date::year_type> (y),
+                  static_cast<date::month_type> (m),
+                  static_cast<date::day_type> (d)),
+            time_duration (
+              static_cast<time_duration::hour_type> (h),
+              static_cast<time_duration::min_type> (minute),
+              static_cast<time_duration::sec_type> (s),
+              0));
+        }
+      }
+
+      static void
+      set_image (char* b, bool& is_null, const ptime& v)
+      {
+        if (v.is_special ())
+        {
+          if (v.is_not_a_date_time ())
+            is_null = true;
+          else
+            throw odb::boost::date_time::special_value ();
+        }
+        else
+        {
+          is_null = false;
+
+          const date& d (v.date ());
+          const time_duration& t (v.time_of_day ());
+
+          details::set_date (b,
+                             static_cast<short> (d.year ()),
+                             static_cast<unsigned char> (d.month ()),
+                             static_cast<unsigned char> (d.day ()),
+                             static_cast<unsigned char> (t.hours ()),
+                             static_cast<unsigned char> (t.minutes ()),
+                             static_cast<unsigned char> (t.seconds ()));
         }
       }
     };
