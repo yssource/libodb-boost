@@ -190,4 +190,6 @@ namespace odb
   }
 }
 
+#include <odb/post.hxx>
+
 #endif // ODB_BOOST_DATE_TIME_MSSQL_POSIX_TIME_TRAITS_HXX
