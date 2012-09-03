@@ -13,10 +13,13 @@
 
 #include <odb/pre.hxx>
 
+#include <utility> // std::move
+
 #include <boost/unordered_set.hpp>
 #include <boost/unordered_map.hpp>
 
 #include <odb/container-traits.hxx>
+#include <odb/details/config.hxx>   // ODB_CXX11
 
 namespace odb
 {
@@ -51,7 +54,11 @@ namespace odb
       {
         value_type v;
         more = f.load_all (v);
+#ifdef ODB_CXX11
+        c.insert (std::move (v));
+#else
         c.insert (v);
+#endif
       }
     }
 
@@ -107,7 +114,11 @@ namespace odb
       {
         value_type v;
         more = f.load_all (v);
+#ifdef ODB_CXX11
+        c.insert (std::move (v));
+#else
         c.insert (v);
+#endif
       }
     }
 
@@ -163,7 +174,12 @@ namespace odb
         key_type k;
         value_type v;
         more = f.load_all (k, v);
+
+#ifdef ODB_CXX11
+        c.insert (pair_type (std::move (k), std::move (v)));
+#else
         c.insert (pair_type (k, v));
+#endif
       }
     }
 
@@ -223,7 +239,12 @@ namespace odb
         key_type k;
         value_type v;
         more = f.load_all (k, v);
+
+#ifdef ODB_CXX11
+        c.insert (pair_type (std::move (k), std::move (v)));
+#else
         c.insert (pair_type (k, v));
+#endif
       }
     }
 
