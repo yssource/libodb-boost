@@ -7,3 +7,5 @@
 --profile boost/unordered
 --profile boost/date-time
 --profile boost/multi-index
+--profile boost/uuid
+
