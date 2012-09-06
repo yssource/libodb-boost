@@ -18,7 +18,7 @@ namespace odb
   namespace mssql
   {
     template <>
-    class value_traits< ::boost::gregorian::date, id_date>
+    class default_value_traits< ::boost::gregorian::date, id_date>
     {
     public:
       typedef ::boost::gregorian::date value_type;

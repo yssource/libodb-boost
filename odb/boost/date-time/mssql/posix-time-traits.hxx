@@ -18,7 +18,7 @@ namespace odb
   namespace mssql
   {
     template <>
-    class value_traits< ::boost::posix_time::ptime, id_datetime>
+    class default_value_traits< ::boost::posix_time::ptime, id_datetime>
     {
     public:
       typedef ::boost::posix_time::ptime ptime;
@@ -107,7 +107,7 @@ namespace odb
     };
 
     template <>
-    class value_traits< ::boost::posix_time::time_duration, id_time>
+    class default_value_traits< ::boost::posix_time::time_duration, id_time>
     {
     public:
       typedef ::boost::posix_time::time_duration time_duration;
