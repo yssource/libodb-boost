@@ -13,10 +13,9 @@
 
 #include <odb/pre.hxx>
 
-#include <cstring> // std::memcpy
+#include <cstring> // std::memcpy, std::memset
 
 #include <boost/uuid/uuid.hpp>
-#include <boost/uuid/nil_generator.hpp>
 
 #include <odb/mssql/traits.hxx>
 
@@ -38,7 +37,7 @@ namespace odb
         if (!is_null)
           std::memcpy (v.data, &i, 16);
         else
-          v = ::boost::uuids::nil_uuid ();
+          std::memset (v.data, 0, 16);
       }
 
       static void
