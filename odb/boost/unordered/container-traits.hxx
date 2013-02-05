@@ -29,7 +29,8 @@ namespace odb
   class access::container_traits< ::boost::unordered_set<V, H, P, A> >
   {
   public:
-    static container_kind const kind = ck_set;
+    static const container_kind kind = ck_set;
+    static const bool smart = false;
 
     typedef ::boost::unordered_set<V, H, P, A> container_type;
     typedef V value_type;
@@ -42,7 +43,7 @@ namespace odb
     {
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (*i);
+        f.insert (*i);
     }
 
     static void
@@ -53,7 +54,7 @@ namespace odb
       while (more)
       {
         value_type v;
-        more = f.load_all (v);
+        more = f.select (v);
 #ifdef ODB_CXX11
         c.insert (std::move (v));
 #else
@@ -65,17 +66,17 @@ namespace odb
     static void
     update (const container_type& c, const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
 
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (*i);
+        f.insert (*i);
     }
 
     static void
     erase (const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
     }
   };
 
@@ -89,7 +90,8 @@ namespace odb
   class access::container_traits< ::boost::unordered_multiset<V, H, P, A> >
   {
   public:
-    static container_kind const kind = ck_multiset;
+    static const container_kind kind = ck_multiset;
+    static const bool smart = false;
 
     typedef ::boost::unordered_multiset<V, H, P, A> container_type;
     typedef V value_type;
@@ -102,7 +104,7 @@ namespace odb
     {
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (*i);
+        f.insert (*i);
     }
 
     static void
@@ -113,7 +115,7 @@ namespace odb
       while (more)
       {
         value_type v;
-        more = f.load_all (v);
+        more = f.select (v);
 #ifdef ODB_CXX11
         c.insert (std::move (v));
 #else
@@ -125,17 +127,17 @@ namespace odb
     static void
     update (const container_type& c, const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
 
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (*i);
+        f.insert (*i);
     }
 
     static void
     erase (const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
     }
   };
 
@@ -145,7 +147,8 @@ namespace odb
   class access::container_traits< ::boost::unordered_map<K, V, H, P, A> >
   {
   public:
-    static container_kind const kind = ck_map;
+    static const container_kind kind = ck_map;
+    static const bool smart = false;
 
     typedef ::boost::unordered_map<K, V, H, P, A> container_type;
 
@@ -161,7 +164,7 @@ namespace odb
     {
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (i->first, i->second);
+        f.insert (i->first, i->second);
     }
 
     static void
@@ -173,7 +176,7 @@ namespace odb
       {
         key_type k;
         value_type v;
-        more = f.load_all (k, v);
+        more = f.select (k, v);
 
 #ifdef ODB_CXX11
         c.insert (pair_type (std::move (k), std::move (v)));
@@ -186,17 +189,17 @@ namespace odb
     static void
     update (const container_type& c, const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
 
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (i->first, i->second);
+        f.insert (i->first, i->second);
     }
 
     static void
     erase (const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
     }
   };
 
@@ -210,7 +213,8 @@ namespace odb
   class access::container_traits< ::boost::unordered_multimap<K, V, H, P, A> >
   {
   public:
-    static container_kind const kind = ck_multimap;
+    static const container_kind kind = ck_multimap;
+    static const bool smart = false;
 
     typedef ::boost::unordered_multimap<K, V, H, P, A> container_type;
 
@@ -226,7 +230,7 @@ namespace odb
     {
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (i->first, i->second);
+        f.insert (i->first, i->second);
     }
 
     static void
@@ -238,7 +242,7 @@ namespace odb
       {
         key_type k;
         value_type v;
-        more = f.load_all (k, v);
+        more = f.select (k, v);
 
 #ifdef ODB_CXX11
         c.insert (pair_type (std::move (k), std::move (v)));
@@ -251,17 +255,17 @@ namespace odb
     static void
     update (const container_type& c, const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
 
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (i->first, i->second);
+        f.insert (i->first, i->second);
     }
 
     static void
     erase (const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
     }
   };
 }

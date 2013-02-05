@@ -85,7 +85,8 @@ namespace odb
   class multi_index_traits
   {
   public:
-    static container_kind const kind = ck_ordered;
+    static const container_kind kind = ck_ordered;
+    static const bool smart = false;
 
     typedef ::boost::multi_index_container<V, ISP, A> container_type;
     typedef typename container_type::template nth_index<N>::type
@@ -104,7 +105,7 @@ namespace odb
       index_type i (0);
       for (typename ordered_container_type::const_iterator j (oc.begin ()),
              e (oc.end ()); j != e; ++j)
-        f.insert_one (i++, *j);
+        f.insert (i++, *j);
     }
 
     static void
@@ -117,7 +118,7 @@ namespace odb
       {
         index_type dummy;
         value_type v;
-        more = f.load_all (dummy, v);
+        more = f.select (dummy, v);
 #ifdef ODB_CXX11
         oc.push_back (std::move (v));
 #else
@@ -129,19 +130,19 @@ namespace odb
     static void
     update (const container_type& c, const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
 
       const ordered_container_type& oc (c.template get<N> ());
       index_type i (0);
       for (typename ordered_container_type::const_iterator j (oc.begin ()),
              e (oc.end ()); j != e; ++j)
-        f.insert_one (i++, *j);
+        f.insert (i++, *j);
     }
 
     static void
     erase (const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
     }
   };
 
@@ -151,7 +152,8 @@ namespace odb
   class multi_index_traits<V, ISP, A, -1>
   {
   public:
-    static container_kind const kind = ck_set;
+    static const container_kind kind = ck_set;
+    static const bool smart = false;
 
     typedef ::boost::multi_index_container<V, ISP, A> container_type;
     typedef V value_type;
@@ -164,7 +166,7 @@ namespace odb
     {
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (*i);
+        f.insert (*i);
     }
 
     static void
@@ -175,7 +177,7 @@ namespace odb
       while (more)
       {
         value_type v;
-        more = f.load_all (v);
+        more = f.select (v);
 #ifdef ODB_CXX11
         c.insert (std::move (v));
 #else
@@ -187,17 +189,17 @@ namespace odb
     static void
     update (const container_type& c, const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
 
       for (typename container_type::const_iterator i (c.begin ()),
              e (c.end ()); i != e; ++i)
-        f.insert_one (*i);
+        f.insert (*i);
     }
 
     static void
     erase (const functions& f)
     {
-      f.delete_all ();
+      f.delete_ ();
     }
   };
 
