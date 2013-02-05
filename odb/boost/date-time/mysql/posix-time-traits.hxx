@@ -52,6 +52,7 @@ namespace odb
         else
         {
           is_null = false;
+          i.neg = false;
 
           const date& d (v.date ());
           i.year = d.year ();
@@ -104,6 +105,7 @@ namespace odb
         else
         {
           is_null = false;
+          i.neg = false;
 
           const date& d (v.date ());
           i.year = d.year ();
@@ -157,11 +159,11 @@ namespace odb
         else
         {
           is_null = false;
+          i.neg = v.is_negative ();
           i.day = 0;
           i.hour = std::abs (v.hours ());
           i.minute = std::abs (v.minutes ());
           i.second = std::abs (v.seconds ());
-          i.neg = v.is_negative ();
         }
       }
     };

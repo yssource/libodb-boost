@@ -47,6 +47,7 @@ namespace odb
         else
         {
           is_null = false;
+          i.neg = false;
           i.year = v.year ();
           i.month = v.month ();
           i.day = v.day ();
