@@ -51,6 +51,11 @@ namespace odb
           i.year = v.year ();
           i.month = v.month ();
           i.day = v.day ();
+
+          i.hour = 0;
+          i.minute = 0;
+          i.second = 0;
+          i.second_part = 0;
         }
       }
     };

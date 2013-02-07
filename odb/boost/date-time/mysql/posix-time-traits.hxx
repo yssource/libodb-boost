@@ -63,6 +63,8 @@ namespace odb
           i.hour = t.hours ();
           i.minute = t.minutes ();
           i.second = t.seconds ();
+
+          i.second_part = 0;
         }
       }
     };
@@ -116,6 +118,8 @@ namespace odb
           i.hour = t.hours ();
           i.minute = t.minutes ();
           i.second = t.seconds ();
+
+          i.second_part = 0;
         }
       }
     };
@@ -160,10 +164,16 @@ namespace odb
         {
           is_null = false;
           i.neg = v.is_negative ();
+
+          i.year = 0;
+          i.month = 0;
           i.day = 0;
+
           i.hour = std::abs (v.hours ());
           i.minute = std::abs (v.minutes ());
           i.second = std::abs (v.seconds ());
+
+          i.second_part = 0;
         }
       }
     };
