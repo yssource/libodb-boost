@@ -1,5 +1,5 @@
 // file      : odb/boost/uuid/mysql/uuid-mapping.hxx
-// copyright : Copyright (c) 2009-2012 Code Synthesis Tools CC
+// copyright : Copyright (c) 2009-2013 Code Synthesis Tools CC
 // license   : GNU GPL v2; see accompanying LICENSE file
 
 #ifndef ODB_BOOST_UUID_MYSQL_UUID_MAPPING_HXX
