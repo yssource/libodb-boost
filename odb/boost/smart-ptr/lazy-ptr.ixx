@@ -221,6 +221,13 @@ namespace odb
     }
 
     template <class T>
+    inline ::boost::shared_ptr<T> lazy_shared_ptr<T>::
+    get_eager () const
+    {
+      return p_;
+    }
+
+    template <class T>
     template <class DB, class ID>
     inline lazy_shared_ptr<T>::
     lazy_shared_ptr (DB& db, const ID& id): i_ (db, id) {}
@@ -552,6 +559,13 @@ namespace odb
       // With weak pointer we always keep i_ up to date.
       //
       p_.reset ();
+    }
+
+    template <class T>
+    inline ::boost::weak_ptr<T> lazy_weak_ptr<T>::
+    get_eager () const
+    {
+      return p_;
     }
 
     template <class T>
