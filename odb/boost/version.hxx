@@ -43,8 +43,8 @@
 // since if the Boost interface virsion is incremented then the bugfix version
 // must be incremented as well.
 //
-#define LIBODB_BOOST_VERSION     2020000
-#define LIBODB_BOOST_VERSION_STR "2.2.0"
+#define LIBODB_BOOST_VERSION     2020100
+#define LIBODB_BOOST_VERSION_STR "2.2.1"
 
 #include <odb/post.hxx>
 
