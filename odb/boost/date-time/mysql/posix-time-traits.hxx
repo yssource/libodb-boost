@@ -35,8 +35,20 @@ namespace odb
         if (is_null)
           v = ptime (::boost::date_time::not_a_date_time);
         else
-          v = ptime (date (i.year, i.month, i.day),
-                     time_duration (i.hour, i.minute, i.second));
+        {
+          // Since MySQL 5.6.4, the microseconds part is no longer ignored.
+          //
+          unsigned long long fract_s (i.second_part);
+          fract_s = fract_s * time_duration::ticks_per_second () / 1000000ULL;
+
+          v = ptime (
+            date (i.year, i.month, i.day),
+            time_duration (
+              i.hour,
+              i.minute,
+              i.second,
+              static_cast<time_duration::fractional_seconds_type> (fract_s)));
+        }
       }
 
       static void
@@ -64,7 +76,9 @@ namespace odb
           i.minute = t.minutes ();
           i.second = t.seconds ();
 
-          i.second_part = 0;
+          unsigned long long ms (t.fractional_seconds ());
+          ms = ms * 1000000ULL / time_duration::ticks_per_second ();
+          i.second_part = static_cast<unsigned long> (ms);
         }
       }
     };
@@ -85,8 +99,20 @@ namespace odb
         if (is_null)
           v = ptime (::boost::date_time::not_a_date_time);
         else
-          v = ptime (date (i.year, i.month, i.day),
-                     time_duration (i.hour, i.minute, i.second));
+        {
+          // Since MySQL 5.6.4, the microseconds part is no longer ignored.
+          //
+          unsigned long long fract_s (i.second_part);
+          fract_s = fract_s * time_duration::ticks_per_second () / 1000000ULL;
+
+          v = ptime (
+            date (i.year, i.month, i.day),
+            time_duration (
+              i.hour,
+              i.minute,
+              i.second,
+              static_cast<time_duration::fractional_seconds_type> (fract_s)));
+        }
       }
 
       static void
@@ -119,7 +145,9 @@ namespace odb
           i.minute = t.minutes ();
           i.second = t.seconds ();
 
-          i.second_part = 0;
+          unsigned long long ms (t.fractional_seconds ());
+          ms = ms * 1000000ULL / time_duration::ticks_per_second ();
+          i.second_part = static_cast<unsigned long> (ms);
         }
       }
     };
@@ -141,7 +169,16 @@ namespace odb
           v = time_duration (::boost::date_time::not_a_date_time);
         else
         {
-          v = time_duration (i.hour, i.minute, i.second);
+          // Since MySQL 5.6.4, the microseconds part is no longer ignored.
+          //
+          unsigned long long fract_s (i.second_part);
+          fract_s = fract_s * time_duration::ticks_per_second () / 1000000ULL;
+
+          v = time_duration (
+            i.hour,
+            i.minute,
+            i.second,
+            static_cast<time_duration::fractional_seconds_type> (fract_s));
 
           if (i.neg)
             v = v.invert_sign ();
@@ -173,7 +210,9 @@ namespace odb
           i.minute = std::abs (v.minutes ());
           i.second = std::abs (v.seconds ());
 
-          i.second_part = 0;
+          unsigned long long ms (std::abs (v.fractional_seconds ()));
+          ms = ms * 1000000ULL / time_duration::ticks_per_second ();
+          i.second_part = static_cast<unsigned long> (ms);
         }
       }
     };
