@@ -210,7 +210,10 @@ namespace odb
           i.minute = std::abs (v.minutes ());
           i.second = std::abs (v.seconds ());
 
-          unsigned long long ms (std::abs (v.fractional_seconds ()));
+          // Some compilers, e.g., VC8, don't have 64-bit abs() overload.
+          //
+          time_duration::fractional_seconds_type sms (v.fractional_seconds ());
+          unsigned long long ms (sms >= 0 ? sms : -sms);
           ms = ms * 1000000ULL / time_duration::ticks_per_second ();
           i.second_part = static_cast<unsigned long> (ms);
         }

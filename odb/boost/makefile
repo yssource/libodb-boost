@@ -55,7 +55,7 @@ $(dist): export headers = $(subst $(src_base)/,,$(shell find $(src_base) \
 -name '*.hxx' -o -name '*.ixx' -o -name '*.txx'))
 $(dist): export options = $(subst $(src_base)/,,$(shell find $(src_base) \
 -name '*.options'))
-$(dist): export extra_dist := libodb-boost-vc9.vcproj \
+$(dist): export extra_dist := libodb-boost-vc8.vcproj libodb-boost-vc9.vcproj \
 libodb-boost-vc10.vcxproj libodb-boost-vc10.vcxproj.filters \
 libodb-boost-vc11.vcxproj libodb-boost-vc11.vcxproj.filters
 $(dist): export interface_version = $(shell sed -e \
@@ -63,6 +63,7 @@ $(dist): export interface_version = $(shell sed -e \
 
 $(dist):
 	$(call dist-data,$(sources) $(headers) $(options) details/config.h.in)
+	$(call meta-vc8proj,$(src_base)/libodb-boost-vc8.vcproj)
 	$(call meta-vc9proj,$(src_base)/libodb-boost-vc9.vcproj)
 	$(call meta-vc10proj,$(src_base)/libodb-boost-vc10.vcxproj)
 	$(call meta-vc11proj,$(src_base)/libodb-boost-vc11.vcxproj)
@@ -90,6 +91,7 @@ endif
 # How to.
 #
 $(call include,$(bld_root)/dist.make)
+$(call include,$(bld_root)/meta/vc8proj.make)
 $(call include,$(bld_root)/meta/vc9proj.make)
 $(call include,$(bld_root)/meta/vc10proj.make)
 $(call include,$(bld_root)/meta/vc11proj.make)
