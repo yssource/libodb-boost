@@ -16,7 +16,7 @@ $(dist): export dirs := $(dirs)
 $(dist): export docs := GPLv2 LICENSE README NEWS version
 $(dist): export options := odb/boost.options
 $(dist): data_dist := INSTALL libodb-boost-vc8.sln libodb-boost-vc9.sln \
-libodb-boost-vc10.sln libodb-boost-vc11.sln
+libodb-boost-vc10.sln libodb-boost-vc11.sln libodb-boost-vc12.sln
 $(dist): exec_dist := bootstrap
 $(dist): export extra_dist := $(data_dist) $(exec_dist)
 $(dist): export version = $(shell cat $(src_root)/version)
