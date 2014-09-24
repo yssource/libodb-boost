@@ -1,9 +1,9 @@
-// file      : odb/boost/unordered/container-traits.hxx
+// file      : odb/boost/multi-index/container-traits.hxx
 // copyright : Copyright (c) 2009-2013 Code Synthesis Tools CC
 // license   : GNU GPL v2; see accompanying LICENSE file
 
-#ifndef ODB_BOOST_UNORDERED_CONTAINER_TRAITS_HXX
-#define ODB_BOOST_UNORDERED_CONTAINER_TRAITS_HXX
+#ifndef ODB_BOOST_MULTI_INDEX_CONTAINER_TRAITS_HXX
+#define ODB_BOOST_MULTI_INDEX_CONTAINER_TRAITS_HXX
 
 #include <boost/version.hpp>
 
@@ -213,4 +213,4 @@ namespace odb
 #include <odb/post.hxx>
 
 #endif // BOOST_VERSION
-#endif // ODB_BOOST_UNORDERED_CONTAINER_TRAITS_HXX
+#endif // ODB_BOOST_MULTI_INDEX_CONTAINER_TRAITS_HXX
