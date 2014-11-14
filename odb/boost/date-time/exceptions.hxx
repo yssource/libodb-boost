@@ -20,12 +20,18 @@ namespace odb
       {
         virtual const char*
         what () const throw ();
+
+        virtual special_value*
+        clone () const;
       };
 
       struct LIBODB_BOOST_EXPORT value_out_of_range: exception
       {
         virtual const char*
         what () const throw ();
+
+        virtual value_out_of_range*
+        clone () const;
       };
     }
   }

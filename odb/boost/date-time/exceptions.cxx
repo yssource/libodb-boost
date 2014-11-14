@@ -16,10 +16,22 @@ namespace odb
         return "unrepresentable date/time special value";
       }
 
+      special_value* special_value::
+      clone () const
+      {
+        return new special_value (*this);
+      }
+
       const char* value_out_of_range::
       what () const throw ()
       {
         return "date/time value out of range";
+      }
+
+      value_out_of_range* value_out_of_range::
+      clone () const
+      {
+        return new value_out_of_range (*this);
       }
     }
   }
