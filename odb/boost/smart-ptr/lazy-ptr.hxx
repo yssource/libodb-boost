@@ -136,6 +136,13 @@ namespace odb
       template <class Y> friend class lazy_shared_ptr;
       template <class Y> friend class lazy_weak_ptr;
 
+      // For lazy_weak_ptr::lock().
+      //
+      lazy_shared_ptr (const ::boost::shared_ptr<T>& p,
+                       const lazy_ptr_impl<T>& i)
+          : p_ (p), i_ (i) {}
+
+    private:
       mutable ::boost::shared_ptr<T> p_;
       mutable lazy_ptr_impl<T> i_;
     };
