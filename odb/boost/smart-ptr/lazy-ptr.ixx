@@ -45,7 +45,7 @@ namespace odb
     {
       // If the pointer has expired but can be re-loaded, then don't throw.
       //
-      p_ = r.lock ();
+      p_ = r.lock ().get_eager ();
 
       if (!p_ && !i_)
         throw ::boost::bad_weak_ptr ();
