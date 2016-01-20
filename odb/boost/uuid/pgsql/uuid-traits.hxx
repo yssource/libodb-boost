@@ -31,6 +31,11 @@ namespace odb
       typedef value_type query_type;
       typedef unsigned char* image_type;
 
+      // PostgreSQL binary UUID representation is big-endian in the RFC 4122,
+      // section 4.1.2 order. Lucky for us, that also the representation used
+      // by Boost.
+      //
+
       static void
       set_value (value_type& v, const unsigned char* i, bool is_null)
       {
