@@ -8,6 +8,6 @@
 #
 --hxx-prologue '#include <odb/boost/version.hxx>'
 
---hxx-prologue '#if ODB_BOOST_VERSION != 2040200 // 2.5.0.a2'
+--hxx-prologue '#if ODB_BOOST_VERSION != 2040400 // 2.5.0.a4'
 --hxx-prologue '#  error ODB and C++ compilers see different libodb-boost interface versions'
 --hxx-prologue '#endif'
